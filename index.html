@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)https://andy08691.github.io/camera-app/ -->
+<html lang="zh-tw"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>scan test</title>
+    <script type="text/javascript" src="./scanbarcodetest/library@latest"></script>
+</head>
+
+<body>
+   <video id="webcam-preview"></video>
+<p id="result"></p>
+<p id="result2"></p>
+<p id="result3"></p>
+<script>
+  const codeReader = new ZXing.BrowserBarcodeReader();
+
+  codeReader.decodeFromVideoDevice(null, 'webcam-preview', (result, err) => {
+    if (result) {
+
+  	codeReader.decodeFromVideoDevice(null, 'webcam-preview', (result2, err) => {
+    	if (result2 == result) {
+
+      // properly decoded qr code
+      console.log('Found Barcode code!', result)
+      var retVal = confirm("掃描結果2：" + result); // 掃描結果顯示
+      document.getElementById('result').textContent = result.text
+	}
+
+
+    }
+
+    if (err) {
+      // As long as this error belongs into one of the following categories
+      // the code reader is going to continue as excepted. Any other error
+      // will stop the decoding loop.
+      //
+      // Excepted Exceptions:
+      //
+      //  - NotFoundException
+      //  - ChecksumException
+      //  - FormatException
+
+      if (err instanceof ZXing.NotFoundException) {
+        console.log('No Barcode code found.')
+      }
+
+      if (err instanceof ZXing.ChecksumException) {
+        console.log('A code was found, but it\'s read value was not valid.')
+      }
+
+      if (err instanceof ZXing.FormatException) {
+        console.log('A code was found, but it was in a invalid format.')
+      }
+    }
+  })
+</script>
+
+
+
+
+</body></html>
