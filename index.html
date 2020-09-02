@@ -4,31 +4,22 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>scan test</title>
-    <script type="text/javascript" src="./scanbarcodetest/library@latest"></script>
+    <title>instascan：純前端掃描 QR Code</title>
+    <script type="text/javascript" src="./instascan：純前端掃描 QR Code_files/library@latest"></script>
 </head>
 
 <body>
    <video id="webcam-preview"></video>
 <p id="result"></p>
-<p id="result2"></p>
-<p id="result3"></p>
 <script>
   const codeReader = new ZXing.BrowserBarcodeReader();
 
   codeReader.decodeFromVideoDevice(null, 'webcam-preview', (result, err) => {
     if (result) {
-
-  	codeReader.decodeFromVideoDevice(null, 'webcam-preview', (result2, err) => {
-    	if (result2 == result) {
-
       // properly decoded qr code
       console.log('Found Barcode code!', result)
-      var retVal = confirm("掃描結果2：" + result); // 掃描結果顯示
+      var retVal = confirm("掃描結果：" + result); // 掃描結果顯示
       document.getElementById('result').textContent = result.text
-	}
-
-
     }
 
     if (err) {
