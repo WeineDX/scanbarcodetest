@@ -1,63 +1,33 @@
-<!DOCTYPE html>
-<!-- saved from url=(0039)https://weinedx.github.io/scanbarcodetest/ -->
-<html lang="zh-tw"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>scan test</title>
-    <script type="text/javascript" src="./lib/library@latest"></script>
-</head>
+<html>
+<head>
+	<script type="text/javascript">
 
-<body>
-   <video id="webcam-preview"></video>
-<p id="result"></p>
-<p id="result2"></p>
-<p id="result3"></p>
-<script>
-  const codeReader = new ZXing.BrowserBarcodeReader();
+var n = Math.floor(Math.random()*100)+1;  
+var num = 0;                       
 
-  codeReader.decodeFromVideoDevice(null, 'webcam-preview', (result, err) => {
-    if (result) {
+num = prompt("請輸入數字:", "");
 
-  	codeReader.decodeFromVideoDevice(null, 'webcam-preview', (result2, err) => {
-    	if (result2 == result) {
-
-      // properly decoded qr code
-      console.log('Found Barcode code!', result)
-      var retVal = confirm("掃描結果2：" + result); // 掃描結果顯示
-      document.getElementById('result').textContent = result.text
-	}
-
-
-    }
-
-    if (err) {
-      // As long as this error belongs into one of the following categories
-      // the code reader is going to continue as excepted. Any other error
-      // will stop the decoding loop.
-      //
-      // Excepted Exceptions:
-      //
-      //  - NotFoundException
-      //  - ChecksumException
-      //  - FormatException
-
-      if (err instanceof ZXing.NotFoundException) {
-        console.log('No Barcode code found.')
-      }
-
-      if (err instanceof ZXing.ChecksumException) {
-        console.log('A code was found, but it\'s read value was not valid.')
-      }
-
-      if (err instanceof ZXing.FormatException) {
-        console.log('A code was found, but it was in a invalid format.')
-      }
-    }
-  })
+if (num == null || num == n) 
+ if(num==null) {
+document.write("你沒有輸入，答案是"+ n +".");
+} else {
+document.write("恭喜答對了，"+ n +".");
+}
+for (var i=1; i<=num; i++)  { 
+if(num>n) {
+num = prompt("比"+ num +"再低一點，請輸入在1與100之間", "");
+continue;
+} else if (num<n) {
+num = prompt("比"+ num +"再高一點，請輸入在1與100之間", "");
+continue;
+} else if (num == n) {
+document.write("回答對了，"+ n +".<br />");
+break;
+} else {
+document.write("回答錯了，答案是"+ n +".");
+break;
+  }
+}
+document.write("恭喜你，共猜"+ i +"次");                                        
 </script>
 
-
-
-
-</body></html>
